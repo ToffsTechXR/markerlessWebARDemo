@@ -3,8 +3,7 @@
 <head>
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
   <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+  <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
   <style>   
       #webcam {
           opacity:1;
@@ -19,8 +18,7 @@
 <body>
   <video autoplay id="webcam" playsinline></video>
   <a-scene 
-    vr-mode-ui="enabled: false"
-    gesture-detector>
+    vr-mode-ui="enabled: false">
     <a-sphere cursor-listener position="-7 0 7" radius="1.25" color="yellowgreen"></a-sphere>
     <a-sphere cursor-listener position="-7 0 -7" radius="1.25" color="green"></a-sphere>
     <a-entity 
@@ -30,7 +28,6 @@
       position="10 -2 4" 
       rotation="0 270 0" 
       animation-mixer
-      gesture-handler
     ></a-entity>
     <a-entity 
       id="monsterModel" 
@@ -56,6 +53,24 @@
     };
 
     startStream();
+
+    var cuteModel = document.getElementById('cuteModel');
+    var cuteModelManager = new Hammer.Manager(cuteModel);
+
+    // create a pinch and rotate recognizer
+    // these require 2 pointers
+    var pinch = new Hammer.Pinch();
+    var rotate = new Hammer.Rotate();
+
+    // we want to detect both the same time
+    pinch.recognizeWith(rotate);
+
+    // add to the Manager
+    cuteModelManager.add([pinch, rotate]);
+
+    mc.on("pinch rotate", function(ev) {
+        console.log(ev);
+    });
 
   </script>
 </body>
