@@ -4,6 +4,62 @@
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
   <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
   <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+  <script>
+    AFRAME.registerComponent("foo",{
+    init:function() {
+      var cuteModel = document.getElementById('cuteModel');
+      var cuteModelManager = new Hammer.Manager(cuteModel);
+
+      // create a pinch and rotate recognizer
+      // these require 2 pointers
+      var pinch = new Hammer.Pinch();
+      var rotate = new Hammer.Rotate();
+
+      // we want to detect both the same time
+      pinch.recognizeWith(rotate);
+
+      // add to the Manager
+      cuteModelManager.add([pinch, rotate]);
+
+      // cuteModelManager.on("pinch rotate", function(ev) {
+      //     alert("triggered");
+      // });
+      
+      // var element = document.querySelector('body');
+      // this.marker = document.querySelector('a-marker')
+      // var model = document.querySelector('a-collada-model');
+      // var hammertime = new Hammer(element);
+      // var pinch = new Hammer.Pinch(); // Pinch is not by default in the recognisers
+      // hammertime.add(pinch); // add it to the Manager instance
+
+      // hammertime.on('pan', (ev) => {
+      //   let rotation = model.getAttribute("rotation")
+      //   switch(ev.direction) {
+      //     case 2:
+      //       rotation.y = rotation.y + 4
+      //       break;
+      //     case 4:
+      //       rotation.y = rotation.y - 4
+      //       break;
+      //     case 8:
+      //       rotation.x = rotation.x + 4
+      //       break;
+      //     case 16:
+      //       rotation.x = rotation.x - 4
+      //       break;
+      //     default:
+      //       break;
+      //   }
+      //   model.setAttribute("rotation", rotation)
+      // });
+
+      cuteModelManager.on("pinch", (ev) => {
+        let scale = {x:ev.scale, y:ev.scale, z:ev.scale}
+        model.setAttribute("scale", scale);
+    });
+  }
+});
+  </script>
   <style>   
       #webcam {
           opacity:1;
@@ -53,24 +109,6 @@
     };
 
     startStream();
-
-    var cuteModel = document.getElementById('cuteModel');
-    var cuteModelManager = new Hammer.Manager(cuteModel);
-
-    // create a pinch and rotate recognizer
-    // these require 2 pointers
-    var pinch = new Hammer.Pinch();
-    var rotate = new Hammer.Rotate();
-
-    // we want to detect both the same time
-    pinch.recognizeWith(rotate);
-
-    // add to the Manager
-    cuteModelManager.add([pinch, rotate]);
-
-    cuteModelManager.on("pinch rotate", function(ev) {
-        alert("triggered");
-    });
 
   </script>
 </body>
