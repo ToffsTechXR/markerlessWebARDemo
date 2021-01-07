@@ -22,11 +22,12 @@ AFRAME.registerComponent("gesture-handler", {
         this.el.addEventListener("onefingermove", this.handleRotation);
         this.el.addEventListener("twofingermove", this.handleScale);
       } else {
+          console.log("not added");
         this.el.removeEventListener("onefingermove", this.handleRotation);
         this.el.removeEventListener("twofingermove", this.handleScale);
       }
       console.log(this.enabled);
-      console.log(this.el);
+      console.log(this);
     },
   
     remove: function () {
