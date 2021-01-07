@@ -19,17 +19,17 @@ AFRAME.registerComponent("gesture-handler", {
   
     update: function () {
       if (this.data.enabled) {
-        this.el.sceneEl.addEventListener("onefingermove", this.handleRotation);
-        this.el.sceneEl.addEventListener("twofingermove", this.handleScale);
+        this.el.addEventListener("onefingermove", this.handleRotation);
+        this.el.addEventListener("twofingermove", this.handleScale);
       } else {
-        this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
-        this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
+        this.el.removeEventListener("onefingermove", this.handleRotation);
+        this.el.removeEventListener("twofingermove", this.handleScale);
       }
     },
   
     remove: function () {
-      this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
-      this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
+      this.el.removeEventListener("onefingermove", this.handleRotation);
+      this.el.removeEventListener("twofingermove", this.handleScale);
     },
   
     handleRotation: function (event) {
