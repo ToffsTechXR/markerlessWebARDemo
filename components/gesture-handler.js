@@ -18,16 +18,10 @@ AFRAME.registerComponent("gesture-handler", {
     },
   
     update: function () {
-      if (this.enabled) {
         this.el.addEventListener("onefingermove", this.handleRotation);
         this.el.addEventListener("twofingermove", this.handleScale);
-      } else {
-          console.log("not added");
-        this.el.removeEventListener("onefingermove", this.handleRotation);
-        this.el.removeEventListener("twofingermove", this.handleScale);
-      }
-      console.log(this.enabled);
-      console.log(this);
+        console.log(this);
+        console.log(this.el);
     },
   
     remove: function () {
