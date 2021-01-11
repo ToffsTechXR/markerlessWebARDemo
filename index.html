@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
   <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
   <script src="https://hammerjs.github.io/dist/hammer.js"></script>
   <script src="./components/gesture-detector.js"></script>
@@ -40,22 +39,37 @@
       rotation="0 270 0" 
       animation-mixer></a-entity>
   </a-scene>
+
+  <button onclick="stop();">Switch Camera</button>
   
 
   <script>
     const video = document.querySelector('video');
 
+    let cameraDirection = "user"
+
     const startStream = async () => {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+      if (cameraDirection === "user") {
+        cameraDirection = "environment";
+      } else if (cameraDirection === "environment") {
+        cameraDirection = "user";
+      }
+
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: cameraDirection } });
       handleStream(stream);
     };
 
     const handleStream = (stream) => {
       video.srcObject = stream;
-      console.log("strea");
     };
 
     startStream();
+
+    var stop = () => {
+      console.log("stop button clicked");
+      video.srcObject && video.srcObject.getTracks().forEach(t => t.stop());
+      startStream();
+    }
 
   </script>
 </body>
