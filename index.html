@@ -55,8 +55,9 @@
     const video = document.querySelector('video');
     const canvas = document.getElementById('canvas');
     const imgToCapture = document.getElementById('entireScene');
-    canvas.setAttribute("width", video.width);
-    canvas.setAttribute("height", video.height);
+    const position = video.getBoundingClientRect();
+    canvas.width = position.width;
+    canvas.height = position.height;
 
     let cameraDirection = "user"
 
@@ -86,7 +87,12 @@
     var takePhoto = () => {
       console.log("photo is taken");
       let ctx = canvas.getContext('2d');
-      ctx.drawImage(imgToCapture, 0, 0)
+      var img = new Image();
+      img.onload = function(){
+        ctx.drawImage(imgToCapture, 0, 0);
+      };
+
+      
 
       var link = document.getElementById('saveAs');
       link.href = ctx.toDataURL();   /// set data-uri as href, defaults to PNG
