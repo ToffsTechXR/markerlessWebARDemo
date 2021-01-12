@@ -87,14 +87,12 @@
     var takePhoto = () => {
       console.log("photo is taken");
       let ctx = canvas.getContext('2d');
-      var img = new Image();
-      img.onload = function(){
-        ctx.drawImage(video, 0, 0);
-        var link = document.getElementById('saveAs');
-        link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
-        link.download = 'myFilename.png';
-        link.click();
-      };
+      ctx.drawImage(video, 0, 0);
+      
+      var link = document.getElementById('saveAs');
+      link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
+      link.download = 'myFilename.png';
+      link.click();
     }
 
   </script>
