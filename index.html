@@ -17,11 +17,11 @@
   </style>
 </head>
 <body>
-  <div id="entireScene">
-    <video autoplay id="webcam" playsinline></video>
+  <video autoplay id="webcam" playsinline>
     <a-scene 
       vr-mode-ui="enabled: false"
-      gesture-detector>
+      gesture-detector
+      embedded>
       <a-sphere cursor-listener position="-7 0 7" radius="1.25" color="yellowgreen"></a-sphere>
       <a-sphere cursor-listener position="-7 0 -7" radius="1.25" color="green"></a-sphere>
       <a-entity
@@ -40,7 +40,7 @@
         rotation="0 270 0" 
         animation-mixer></a-entity>
     </a-scene>
-  </div>
+  </video>
 
   <canvas id="canvas"></canvas>
 
@@ -54,7 +54,6 @@
   <script>
     const video = document.querySelector('video');
     const canvas = document.getElementById('canvas');
-    const imgToCapture = document.getElementById('entireScene');
     const position = video.getBoundingClientRect();
     canvas.width = position.width;
     canvas.height = position.height;
@@ -90,7 +89,7 @@
       var img = new Image();
       img.onload = function(){
         console.log("did it reach here?");
-        ctx.drawImage(imgToCapture, 0, 0);
+        ctx.drawImage(video, 0, 0);
         console.log("it reached much further!");
 
         var link = document.getElementById('saveAs');
