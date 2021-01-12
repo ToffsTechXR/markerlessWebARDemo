@@ -95,7 +95,7 @@
       
 
       var link = document.getElementById('saveAs');
-      link.href = ctx.toDataURL();   /// set data-uri as href, defaults to PNG
+      link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
       link.download = 'myFilename.png';
       link.click();
 
