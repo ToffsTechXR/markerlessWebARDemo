@@ -17,34 +17,46 @@
   </style>
 </head>
 <body>
-  <video autoplay id="webcam" playsinline></video>
-  <a-scene 
-    vr-mode-ui="enabled: false"
-    gesture-detector>
-    <a-sphere cursor-listener position="-7 0 7" radius="1.25" color="yellowgreen"></a-sphere>
-    <a-sphere cursor-listener position="-7 0 -7" radius="1.25" color="green"></a-sphere>
-    <a-entity
-      id="cuteModel" 
-      gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githubusercontent.com/martinLGH/AR/master/assets/cute.gltf" 
-      scale="0.01 0.01 0.01" 
-      position="10 -2 4" 
-      rotation="0 270 0" 
-      gesture-handler="minScale: 0.5; maxScale: 5; rotationFactor: 100;"
-    ></a-entity>
-    <a-entity 
-      id="monsterModel" 
-      gltf-model="./assets/monster.gltf" 
-      scale="1 1 1" 
-      position="10 -2 10" 
-      rotation="0 270 0" 
-      animation-mixer></a-entity>
-  </a-scene>
+  <div id="entireScene">
+    <video autoplay id="webcam" playsinline></video>
+    <a-scene 
+      vr-mode-ui="enabled: false"
+      gesture-detector>
+      <a-sphere cursor-listener position="-7 0 7" radius="1.25" color="yellowgreen"></a-sphere>
+      <a-sphere cursor-listener position="-7 0 -7" radius="1.25" color="green"></a-sphere>
+      <a-entity
+        id="cuteModel" 
+        gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githubusercontent.com/martinLGH/AR/master/assets/cute.gltf" 
+        scale="0.01 0.01 0.01" 
+        position="10 -2 4" 
+        rotation="0 270 0" 
+        gesture-handler="minScale: 0.5; maxScale: 5; rotationFactor: 100;"
+      ></a-entity>
+      <a-entity 
+        id="monsterModel" 
+        gltf-model="./assets/monster.gltf" 
+        scale="1 1 1" 
+        position="10 -2 10" 
+        rotation="0 270 0" 
+        animation-mixer></a-entity>
+    </a-scene>
+  </div>
+
+  <canvas id="canvas"></canvas>
+
+  <a id="saveAs" href="#">Click to download</a>
 
   <button onclick="stop();" style="position: absolute; left: 50px; top: 50px;">Switch Camera</button>
+
+  <button onclick="takePhoto();" style="position: absolute; left: 50px; bottom: 50px;">Take Photo</button>
   
 
   <script>
     const video = document.querySelector('video');
+    const canvas = document.getElementById('canvas');
+    const imgToCapture = document.getElementById('entireScene');
+    canvas.setAttribute("width", video.width);
+    canvas.setAttribute("height", video.height);
 
     let cameraDirection = "user"
 
@@ -69,6 +81,19 @@
       console.log("stop button clicked");
       video.srcObject && video.srcObject.getTracks().forEach(t => t.stop());
       startStream();
+    }
+
+    var takePhoto = () => {
+      console.log("photo is taken");
+      let ctx = canvas.getContext('2d');
+      ctx.drawImage(imgToCapture, 0, 0)
+
+      var link = document.getElementById('saveAs');
+      link.href = ctx.toDataURL();   /// set data-uri as href, defaults to PNG
+      link.download = 'myFilename.png';
+      link.click();
+
+      
     }
 
   </script>
