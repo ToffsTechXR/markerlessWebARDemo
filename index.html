@@ -87,15 +87,15 @@
     var takePhoto = () => {
       console.log("photo is taken");
       let ctx = canvas.getContext('2d');
-      ctx.drawImage(imgToCapture, 0, 0);
-
-      var img = canvas.toDataURL().replace("image/png", "image/octet-stream");
-
+      var img = new Image();
       img.onload = function(){
+        ctx.drawImage(imgToCapture, 0, 0);
+
         var link = document.getElementById('saveAs');
         link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
         link.download = 'myFilename.png';
         link.click();
+        console.log("executed");
       };
     }
 
