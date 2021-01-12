@@ -90,16 +90,12 @@
       var img = new Image();
       img.onload = function(){
         ctx.drawImage(imgToCapture, 0, 0);
+        
+        var link = document.getElementById('saveAs');
+        link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
+        link.download = 'myFilename.png';
+        link.click();
       };
-
-      
-
-      var link = document.getElementById('saveAs');
-      link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
-      link.download = 'myFilename.png';
-      link.click();
-
-      
     }
 
   </script>
