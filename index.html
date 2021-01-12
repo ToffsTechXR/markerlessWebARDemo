@@ -89,7 +89,9 @@
       let ctx = canvas.getContext('2d');
       var img = new Image();
       img.onload = function(){
+        console.log("did it reach here?");
         ctx.drawImage(imgToCapture, 0, 0);
+        console.log("it reached much further!");
 
         var link = document.getElementById('saveAs');
         link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
