@@ -17,11 +17,11 @@
   </style>
 </head>
 <body>
-  <video autoplay id="webcam" playsinline>
+  <div id="entireScene">
+    <video autoplay id="webcam" playsinline></video>
     <a-scene 
       vr-mode-ui="enabled: false"
-      gesture-detector
-      embedded>
+      gesture-detector>
       <a-sphere cursor-listener position="-7 0 7" radius="1.25" color="yellowgreen"></a-sphere>
       <a-sphere cursor-listener position="-7 0 -7" radius="1.25" color="green"></a-sphere>
       <a-entity
@@ -40,7 +40,7 @@
         rotation="0 270 0" 
         animation-mixer></a-entity>
     </a-scene>
-  </video>
+  </div>
 
   <canvas id="canvas"></canvas>
 
@@ -54,6 +54,7 @@
   <script>
     const video = document.querySelector('video');
     const canvas = document.getElementById('canvas');
+    const imgToCapture = document.getElementById('entireScene');
     const position = video.getBoundingClientRect();
     canvas.width = position.width;
     canvas.height = position.height;
@@ -88,18 +89,11 @@
       let ctx = canvas.getContext('2d');
       var img = new Image();
       img.onload = function(){
-        console.log("did it reach here?");
         ctx.drawImage(video, 0, 0);
-        console.log("it reached much further!");
-
         var link = document.getElementById('saveAs');
         link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
         link.download = 'myFilename.png';
         link.click();
-        console.log("executed");
-      };
-      img.onerror = function() {
-        console.log("Image failed!");
       };
     }
 
