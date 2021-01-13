@@ -86,13 +86,21 @@
 
     var takePhoto = () => {
       console.log("photo is taken");
-      let ctx = canvas.getContext('2d');
-      ctx.drawImage(video, 0, 0);
+      // let ctx = canvas.getContext('2d');
+      // ctx.drawImage(video, 0, 0);
       
+      // var link = document.getElementById('saveAs');
+      // link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
+      // link.download = 'myFilename.png';
+      // link.click();
+      var canvas2 = sceneEl.canvas;
+      var image = canvas2.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+
       var link = document.getElementById('saveAs');
       link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
       link.download = 'myFilename.png';
       link.click();
+
     }
 
   </script>
