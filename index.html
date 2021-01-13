@@ -42,6 +42,8 @@
     </a-scene>
   </div>
 
+  <canvas id="canvas2"></canvas>
+
   <a id="saveAs" href="#">Click to download</a>
 
   <button onclick="stop();" style="position: absolute; left: 50px; top: 50px;">Switch Camera</button>
@@ -51,10 +53,11 @@
 
   <script>
     const video = document.querySelector('video');
+    const canvas = document.getElementById('canvas2');
     const imgToCapture = document.getElementById('entireScene');
     const position = video.getBoundingClientRect();
-    // canvas.width = position.width;
-    // canvas.height = position.height;
+    canvas.width = position.width;
+    canvas.height = position.height;
 
     let cameraDirection = "user"
 
