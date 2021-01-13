@@ -86,6 +86,14 @@
 
     var takePhoto = () => {
       console.log("photo is taken");
+      var context = canvas.getContext('2d');
+      context.drawImage(video, 0, 0, position.width, position.height);
+
+      var canvas2 = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
+      var context2 = canvas2.getContext('2d');
+      context2.fillstyle = "RGB(0,0,0,0.1)";
+      
+      context.drawImage(context2.canvas2, 0, 0);
       // let ctx = canvas.getContext('2d');
       // ctx.drawImage(video, 0, 0);
       
@@ -96,10 +104,10 @@
       // var canvas2 = AFRAME.scenes[0].canvas;
       // var image = canvas2.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
 
-      // var link = document.getElementById('saveAs');
-      // link.href = canvas2.toDataURL();   /// set data-uri as href, defaults to PNG
-      // link.download = 'myFilename.png';
-      // link.click();
+      var link = document.getElementById('saveAs');
+      link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
+      link.download = 'myFilename.png';
+      link.click();
 
     }
 
