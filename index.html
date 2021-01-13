@@ -95,7 +95,6 @@
 
       var image = new Image();
       image.onload = function () {
-        image.src = context2.canvas2.toDataURL("image/png");
 
         context.drawImage(image, 0, 0);
         // let ctx = canvas.getContext('2d');
@@ -113,6 +112,8 @@
         link.download = 'myFilename.png';
         link.click();
       }
+
+      image.src = context2.canvas2.toDataURL("image/png");
     }
 
   </script>
