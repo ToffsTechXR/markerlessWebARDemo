@@ -42,8 +42,6 @@
     </a-scene>
   </div>
 
-  <canvas id="canvas"></canvas>
-
   <a id="saveAs" href="#">Click to download</a>
 
   <button onclick="stop();" style="position: absolute; left: 50px; top: 50px;">Switch Camera</button>
@@ -53,11 +51,10 @@
 
   <script>
     const video = document.querySelector('video');
-    const canvas = document.getElementById('canvas');
     const imgToCapture = document.getElementById('entireScene');
     const position = video.getBoundingClientRect();
-    canvas.width = position.width;
-    canvas.height = position.height;
+    // canvas.width = position.width;
+    // canvas.height = position.height;
 
     let cameraDirection = "user"
 
@@ -93,13 +90,13 @@
       // link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
       // link.download = 'myFilename.png';
       // link.click();
-      var canvas2 = AFRAME.scenes[0].canvas;
-      var image = canvas2.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+      // var canvas2 = AFRAME.scenes[0].canvas;
+      // var image = canvas2.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
 
-      var link = document.getElementById('saveAs');
-      link.href = canvas2.toDataURL();   /// set data-uri as href, defaults to PNG
-      link.download = 'myFilename.png';
-      link.click();
+      // var link = document.getElementById('saveAs');
+      // link.href = canvas2.toDataURL();   /// set data-uri as href, defaults to PNG
+      // link.download = 'myFilename.png';
+      // link.click();
 
     }
 
