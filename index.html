@@ -80,6 +80,7 @@
 
     var stop = () => {
       console.log("stop button clicked");
+      document.createElement('a');
       video.srcObject && video.srcObject.getTracks().forEach(t => t.stop());
       startStream();
     }
