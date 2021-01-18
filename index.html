@@ -109,7 +109,7 @@
       var image = new Image();
       image.onload = function () {
 
-        context.drawImage(image, 0, 0, position.width, position.height * 1.667);
+        context.drawImage(image, 0, 0, position.width, position.height);
 
         var link = document.createElement('a');
         link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
