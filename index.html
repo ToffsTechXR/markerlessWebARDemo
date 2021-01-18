@@ -99,8 +99,7 @@
 
       //video
       var context = canvas.getContext('2d');
-      //adjust resolution of captured image of video element
-      context.drawImage(video, 0, 0, position.width, position.height * 0.6);
+      context.drawImage(video, 0, 0, position.width, position.height);
 
       //a-scene
       var canvas2 = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
@@ -110,7 +109,7 @@
       var image = new Image();
       image.onload = function () {
 
-        context.drawImage(image, 0, 0, position.width, position.height);
+        context.drawImage(image, 0, 0, position.width, position.height * 1.667);
 
         var link = document.createElement('a');
         link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
