@@ -57,9 +57,13 @@
     const canvas = document.getElementById('canvas2');
     const imgToCapture = document.getElementById('entireScene');
     // const position = video.getBoundingClientRect();
+    // const position = {
+    //   width: 400,
+    //   height: 300
+    // }
     const position = {
-      width: 400,
-      height: 300
+      width: window.screen.width * window.devicePixelRatio,
+      height: window.screen.height * window.devicePixelRatio
     }
     canvas.width = position.width;
     canvas.height = position.height;
