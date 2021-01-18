@@ -77,7 +77,7 @@
         cameraDirection = "user";
       }
 
-      const stream = await navigator.mediaDevices.getUserMedia({ Evideo: { facingMode: cameraDirection } });
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: cameraDirection } });
       handleStream(stream);
     };
 
@@ -99,7 +99,8 @@
 
       //video
       var context = canvas.getContext('2d');
-      context.drawImage(video, 0, 0, position.width, position.height);
+      //adjust resolution of captured image of video element
+      context.drawImage(video, 0, 0, position.width, position.height * 0.6);
 
       //a-scene
       var canvas2 = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
