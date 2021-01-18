@@ -99,8 +99,7 @@
 
       //video
       var context = canvas.getContext('2d');
-      //multiplication factor of 0.6 is to adjust the resolution of captured video element
-      context.drawImage(video, 0, 0, position.width, position.height * 0.6);
+      context.drawImage(video, 0, 0, position.width, position.height);
 
       //a-scene
       var canvas2 = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
