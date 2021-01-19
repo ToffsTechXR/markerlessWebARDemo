@@ -1,5 +1,7 @@
 /* global AFRAME, THREE */
 
+var customElement;
+
 AFRAME.registerComponent("gesture-handler", {
     schema: {
       enabled: { default: true },
@@ -19,6 +21,7 @@ AFRAME.registerComponent("gesture-handler", {
   
     update: function () {
       if (this.data.enabled) {
+        customElement = this.el.sceneEl;
         this.el.sceneEl.addEventListener("onefingermove", this.handleRotation);
         this.el.sceneEl.addEventListener("twofingermove", this.handleScale);
       } else {
