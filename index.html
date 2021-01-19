@@ -53,7 +53,7 @@
     // }
     const position = {
       width: window.screen.width * window.devicePixelRatio,
-      height: window.screen.height * window.devicePixelRatio
+      height: window.screen.height * window.devicePixelRatio * 0.6
     }
     canvas.width = position.width;
     canvas.height = position.height;
@@ -99,7 +99,7 @@
       var image = new Image();
       image.onload = function () {
 
-        context.drawImage(image, 0, 0, position.width, position.height);
+        context.drawImage(image, 0, -(0.667/2)*position.height, position.width, position.height*1.667);
 
         var link = document.createElement('a');
         link.href = canvas.toDataURL();   /// set data-uri as href, defaults to PNG
